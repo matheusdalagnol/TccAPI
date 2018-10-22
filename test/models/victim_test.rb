@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AgressorTest < ActiveSupport::TestCase
+class VictimTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

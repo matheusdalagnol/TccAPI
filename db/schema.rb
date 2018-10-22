@@ -10,28 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_230138) do
+ActiveRecord::Schema.define(version: 2018_10_06_163154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "agressors", force: :cascade do |t|
-    t.string "nome"
-    t.float "latitude"
-    t.float "longitude"
+  create_table "aggressors", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "vitimas", force: :cascade do |t|
-    t.string "nome"
-    t.float "latitude"
-    t.float "longitude"
-    t.bigint "agressor_id"
+  create_table "tracks", force: :cascade do |t|
+    t.string "latitude"
+    t.string "longitude"
+    t.string "trackable_type"
+    t.bigint "trackable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["agressor_id"], name: "index_vitimas_on_agressor_id"
+    t.index ["trackable_type", "trackable_id"], name: "index_tracks_on_trackable_type_and_trackable_id"
   end
 
-  add_foreign_key "vitimas", "agressors"
+  create_table "victims", force: :cascade do |t|
+    t.string "name"
+    t.bigint "aggressor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aggressor_id"], name: "index_victims_on_aggressor_id"
+  end
+
+  add_foreign_key "victims", "aggressors"
 end
