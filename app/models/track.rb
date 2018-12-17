@@ -1,7 +1,7 @@
 class Track < ApplicationRecord
   belongs_to :trackable, polymorphic: true
-
-  require "serialport"
+=begin
+ require "serialport"
 
   #params for serial port
 port_str = "/dev/ttyACM0"  #may be different for you
@@ -21,4 +21,5 @@ while true do
 end
  
 sp.close                       #see note 1
+=end
 end
